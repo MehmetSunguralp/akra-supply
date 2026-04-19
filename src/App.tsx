@@ -6,7 +6,13 @@ import { BrowserRouter } from 'react-router-dom';
 function App() {
   return (
     <BrowserRouter>
-      <Box sx={{ display: 'flex', height: '100dvh', overflow: 'hidden' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          height: '100dvh',
+          overflow: 'hidden',
+        }}
+      >
         <Navigation />
         <Box
           component='main'

@@ -2,7 +2,7 @@ export interface CompanyCardData {
   id: string;
   name: string;
   city: string;
-  category: string; // key olarak kalacak
+  category: string;
   minimumOrder: string;
   leadTime: string;
   score: number;

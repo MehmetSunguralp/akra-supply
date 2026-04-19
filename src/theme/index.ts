@@ -13,6 +13,16 @@ const commonThemeOptions: ThemeOptions = {
         },
       },
     },
+    MuiTypography: {
+      variants: [
+        {
+          props: { variant: 'body2' },
+          style: {
+            opacity: 0.6,
+          },
+        },
+      ],
+    },
   },
 };
 
@@ -34,11 +44,11 @@ export const themes = {
     ...commonThemeOptions,
     palette: {
       mode: 'dark',
-      primary: { main: '#7387F5' },
+      primary: { main: '#FFA726' },
       secondary: { main: '#C7C7C7' },
       background: {
-        default: '#121422',
-        paper: '#131729',
+        default: '#0C0D18',
+        paper: '#101324',
       },
     },
   }),
