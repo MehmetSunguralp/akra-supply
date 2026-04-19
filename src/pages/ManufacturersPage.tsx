@@ -1,8 +1,27 @@
+import { getAllCompanies } from '@/api/apiCalls';
 import CompanyCard from '@/components/CompanyCard';
-import { manufacturers } from '@/mockData';
+import CompanyCardSkeleton from '@/components/CompanyCardSkeleton';
+import type { Company } from '@/types/company';
 import { Box } from '@mui/material';
+import { useEffect, useState } from 'react';
 
 export const ManufacturersPage = () => {
+  const [companies, setCompanies] = useState<Company[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    setLoading(true);
+    getAllCompanies()
+      .then((response) => {
+        if (response.success) {
+          setCompanies(response.data || []);
+        }
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <Box
       component='main'
@@ -18,9 +37,14 @@ export const ManufacturersPage = () => {
         },
       }}
     >
-      {manufacturers.map((card) => (
-        <CompanyCard key={card.id} cardData={card} />
-      ))}
+      {companies &&
+        companies.map((card) => <CompanyCard key={card.id} cardData={card} />)}
+      {loading &&
+        Array(20)
+          .fill('')
+          .map((_, index) => {
+            return <CompanyCardSkeleton key={index} />;
+          })}
     </Box>
   );
 };

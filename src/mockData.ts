@@ -554,7 +554,7 @@ export const manufacturers = [
     name: 'Şahin Çelik Sistemleri',
     city: 'Karabük',
     category: 'steelManufacturing',
-    minimumOrder: '70 Tons',
+    minimumOrder: '70',
     leadTime: '20-29',
     score: 4.6,
     shortDescription:
