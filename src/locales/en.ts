@@ -25,6 +25,12 @@ export const en = {
     sending: 'Sending',
     requestSuccess: 'Your request has been sent successfully.',
     requestFormValidationError: 'Please fill in all required fields before sending.',
+    filterSearchLabel: 'Company name',
+    filterNoResults: 'No companies match your filters.',
+    filterSearchPlaceholder: 'Search by company name',
+    filterApply: 'Apply',
+    filterReset: 'Reset',
+    filterAll: 'All',
     categories: {
       textile: 'Textile',
       furniture: 'Furniture',

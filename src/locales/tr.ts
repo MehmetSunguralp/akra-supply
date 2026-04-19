@@ -25,6 +25,12 @@ export const tr = {
     sending: 'Gönderiliyor',
     requestSuccess: 'Talebiniz başarıyla gönderildi.',
     requestFormValidationError: 'Göndermeden önce tüm zorunlu alanları doldurun.',
+    filterSearchLabel: 'Firma adı',
+    filterNoResults: 'Filtrelerinize uygun üretici bulunamadı.',
+    filterSearchPlaceholder: 'Firma adına göre ara',
+    filterApply: 'Uygula',
+    filterReset: 'Sıfırla',
+    filterAll: 'Tümü',
     categories: {
       textile: 'Tekstil',
       furniture: 'Mobilya',

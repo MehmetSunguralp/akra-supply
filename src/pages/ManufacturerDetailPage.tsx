@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -46,6 +46,7 @@ import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import type { SvgIconComponent } from '@mui/icons-material';
 
 const DESKTOP_NAV_WIDTH_PX = 240;
+const APP_SCROLL_ROOT_ID = 'app-scroll-root';
 
 export const ManufacturerDetailPage = () => {
   const { id } = useParams();
@@ -61,6 +62,10 @@ export const ManufacturerDetailPage = () => {
   const [requestSendingOverlay, setRequestSendingOverlay] = useState(false);
 
   const formRef = useRef<HTMLDivElement | null>(null);
+
+  useLayoutEffect(() => {
+    document.getElementById(APP_SCROLL_ROOT_ID)?.scrollTo(0, 0);
+  }, [id]);
 
   const certificateIcons: Record<string, SvgIconComponent> = {
     'ISO 9001': VerifiedIcon,

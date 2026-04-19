@@ -7,28 +7,49 @@ const api = axios.create({
   timeout: 10000,
 });
 
+const applyCompanyFilters = (list: Company[], filters?: CompanyFilters): Company[] => {
+  let companies = [...list];
+
+  if (filters?.search?.trim()) {
+    const q = filters.search.trim().toLocaleLowerCase('tr');
+    companies = companies.filter((item) => item.name.toLocaleLowerCase('tr').includes(q));
+  }
+
+  if (filters?.city) {
+    companies = companies.filter(
+      (item) => item.city.localeCompare(filters.city!, 'tr', { sensitivity: 'base' }) === 0,
+    );
+  }
+
+  if (filters?.category) {
+    companies = companies.filter((item) => item.category === filters.category);
+  }
+
+  if (filters?.minScore != null && filters.minScore > 0) {
+    companies = companies.filter((item) => item.score >= filters.minScore);
+  }
+
+  if (filters?.leadTimeMax != null) {
+    companies = companies.filter((item) => {
+      const parts = item.leadTime.split('-');
+      const maxDay = Number(parts[1]);
+      return !Number.isNaN(maxDay) && maxDay <= filters.leadTimeMax!;
+    });
+  }
+
+  return companies;
+};
+
 export const getAllCompanies = async (filters?: CompanyFilters): Promise<ApiResponse<Company[]>> => {
   try {
     const params: Record<string, string | number> = {};
-
-    if (filters?.search) params.q = filters.search;
     if (filters?.city) params.city = filters.city;
     if (filters?.category) params.category = filters.category;
 
     const response = await api.get<Company[]>('/', { params });
 
-    let companies = response.data;
-
-    if (filters?.minScore) {
-      companies = companies.filter((item) => item.score >= filters.minScore!);
-    }
-
-    if (filters?.leadTimeMax) {
-      companies = companies.filter((item) => {
-        const maxDay = Number(item.leadTime.split('-')[1]);
-        return maxDay <= filters.leadTimeMax!;
-      });
-    }
+    const raw = response.data ?? [];
+    const companies = applyCompanyFilters(raw, filters);
 
     return {
       success: true,

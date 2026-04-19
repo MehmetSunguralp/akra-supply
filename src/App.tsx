@@ -15,6 +15,7 @@ function App() {
       >
         <Navigation />
         <Box
+          id='app-scroll-root'
           component='main'
           sx={{
             flexGrow: 1,
