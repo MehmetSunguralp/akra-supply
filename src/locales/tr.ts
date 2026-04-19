@@ -2,6 +2,10 @@ export const tr = {
   common: {
     city: 'Şehir',
     leadTime: 'Termin',
+    leadTimeUnitDay: 'Gün',
+    leadTimeUnitWeek: 'Hafta',
+    leadTimeUnitMonth: 'Ay',
+    categorySelectPlaceholder: 'Seçin',
     viewCompany: 'Şirketi Görüntüle',
     minimumOrder: 'Min. Sipariş',
     score: 'Puan',
@@ -18,8 +22,9 @@ export const tr = {
     quantity: 'Miktar',
     description: 'Açıklama',
     requiredField: 'Bu alan zorunludur',
-    sending: 'Gönderiliyor...',
+    sending: 'Gönderiliyor',
     requestSuccess: 'Talebiniz başarıyla gönderildi.',
+    requestFormValidationError: 'Göndermeden önce tüm zorunlu alanları doldurun.',
     categories: {
       textile: 'Tekstil',
       furniture: 'Mobilya',

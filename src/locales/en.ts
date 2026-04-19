@@ -2,6 +2,10 @@ export const en = {
   common: {
     city: 'City',
     leadTime: 'Lead Time',
+    leadTimeUnitDay: 'Day(s)',
+    leadTimeUnitWeek: 'Week(s)',
+    leadTimeUnitMonth: 'Month(s)',
+    categorySelectPlaceholder: 'Select',
     viewCompany: 'View Company',
     minimumOrder: 'MOQ',
     score: 'Rating',
@@ -18,8 +22,9 @@ export const en = {
     quantity: 'Quantity',
     description: 'Description',
     requiredField: 'This field is required',
-    sending: 'Sending...',
+    sending: 'Sending',
     requestSuccess: 'Your request has been sent successfully.',
+    requestFormValidationError: 'Please fill in all required fields before sending.',
     categories: {
       textile: 'Textile',
       furniture: 'Furniture',

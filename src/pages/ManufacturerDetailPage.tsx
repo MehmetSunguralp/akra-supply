@@ -3,6 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import RequestForm from '@/components/RequestForm';
+import ManufacturerGallery from '@/components/ManufacturerGallery';
+import ManufacturerDetailSkeleton from '@/components/ManufacturerDetailSkeleton';
 import type { RootState } from '@/store';
 import { locales } from '@/locales';
 import { getCompanyById } from '@/api/apiCalls';
@@ -27,6 +29,7 @@ import {
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import SendIcon from '@mui/icons-material/Send';
 import CloseIcon from '@mui/icons-material/Close';
 
 import VerifiedIcon from '@mui/icons-material/Verified';
@@ -35,7 +38,14 @@ import FactCheckIcon from '@mui/icons-material/FactCheck';
 import RecyclingIcon from '@mui/icons-material/Recycling';
 import GppGoodIcon from '@mui/icons-material/GppGood';
 import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
+import PlaceIcon from '@mui/icons-material/Place';
+import CategoryIcon from '@mui/icons-material/Category';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import type { SvgIconComponent } from '@mui/icons-material';
+
+const DESKTOP_NAV_WIDTH_PX = 240;
 
 export const ManufacturerDetailPage = () => {
   const { id } = useParams();
@@ -48,6 +58,7 @@ export const ManufacturerDetailPage = () => {
   const [company, setCompany] = useState<Company | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState('');
+  const [requestSendingOverlay, setRequestSendingOverlay] = useState(false);
 
   const formRef = useRef<HTMLDivElement | null>(null);
 
@@ -77,11 +88,7 @@ export const ManufacturerDetailPage = () => {
   }, [id]);
 
   if (loading) {
-    return (
-      <Box sx={{ p: 5, textAlign: 'center' }}>
-        <CircularProgress />
-      </Box>
-    );
+    return <ManufacturerDetailSkeleton />;
   }
 
   if (!company) return null;
@@ -89,37 +96,25 @@ export const ManufacturerDetailPage = () => {
   return (
     <>
       <Fade in timeout={400}>
-        <Box sx={{ p: 3 }}>
-          {/* sticky actions */}
-          <Box
+        <Box sx={{ position: 'relative' }}>
+          <Box sx={{ p: 3 }}>
+          <IconButton
+            onClick={() => navigate(-1)}
+            aria-label={t.back}
             sx={{
-              position: 'sticky',
-              top: 0,
-              zIndex: 10,
-              display: 'flex',
-              gap: 1,
-              mb: 2,
-              py: 1,
-              bgcolor: 'background.default',
+              position: 'fixed',
+              top: 32,
+              left: { xs: 16, md: `calc(${DESKTOP_NAV_WIDTH_PX}px + 32px)` },
+              zIndex: 1200,
+              bgcolor: 'background.paper',
+              border: '1px solid',
+              borderColor: 'divider',
+              boxShadow: 2,
+              '&:hover': { bgcolor: 'action.hover' },
             }}
           >
-            <Button startIcon={<ArrowBackIcon />} variant='outlined' onClick={() => navigate(-1)}>
-              {t.back}
-            </Button>
-
-            <Button
-              endIcon={<KeyboardArrowDownIcon />}
-              variant='contained'
-              onClick={() =>
-                formRef.current?.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'start',
-                })
-              }
-            >
-              {t.sendRequest}
-            </Button>
-          </Box>
+            <ArrowBackIcon />
+          </IconButton>
 
           <Box
             sx={{
@@ -131,6 +126,7 @@ export const ManufacturerDetailPage = () => {
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               mb: 3,
+              boxShadow: (theme) => theme.shadows[4],
             }}
           >
             <Box
@@ -160,57 +156,145 @@ export const ManufacturerDetailPage = () => {
                   height: 88,
                   bgcolor: 'white',
                   border: '3px solid white',
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.35)',
                 }}
               />
 
-              <Box sx={{ color: 'white' }}>
-                <Typography variant='h4'>{company.name}</Typography>
+              <Box sx={{ minWidth: 0, flex: 1 }}>
+                <Typography
+                  variant='h3'
+                  sx={{
+                    color: 'common.white',
+                    textShadow: '0 2px 16px rgba(0,0,0,0.45)',
+                    fontWeight: 600,
+                  }}
+                >
+                  {company.name}
+                </Typography>
 
-                <Typography variant='subtitle1'>{company.city.toLocaleUpperCase(currentLocale)}</Typography>
+                <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center', mt: 0.5 }}>
+                  <PlaceIcon fontSize='large' sx={{ color: 'primary.light' }} />
+                  <Typography
+                    variant='h4'
+                    sx={{
+                      color: 'common.white',
+                      textShadow: '0 2px 12px rgba(0,0,0,0.4)',
+                      fontWeight: 500,
+                    }}
+                  >
+                    {company.city.toLocaleUpperCase(currentLocale)}
+                  </Typography>
+                </Box>
               </Box>
             </Box>
           </Box>
 
-          <Paper sx={{ p: 3, borderRadius: 1 }}>
-            <Grid container spacing={3}>
-              <Grid size={{ xs: 6, md: 3 }}>
-                <Typography variant='body2'>{t.category}</Typography>
+          <Paper
+            elevation={0}
+            sx={{
+              p: 3,
+              borderRadius: 1,
+              border: '1px solid',
+              borderColor: 'divider',
+            }}
+          >
+            <Grid container spacing={3} sx={{ alignItems: 'center' }}>
+              <Grid size={{ xs: 6, md: 2 }}>
+                <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center' }}>
+                  <CategoryIcon fontSize='large' sx={{ color: 'action.active' }} />
+                  <Typography variant='h5' color='text.secondary' sx={{ fontWeight: 600 }}>
+                    {t.category}
+                  </Typography>
+                </Box>
 
-                <Typography variant='subtitle1'>
+                <Typography variant='h6' sx={{ fontWeight: 600, mt: 0.5 }}>
                   {t.categories[company.category as keyof typeof t.categories]}
                 </Typography>
               </Grid>
 
-              <Grid size={{ xs: 6, md: 3 }}>
-                <Typography variant='body2'>{t.score}</Typography>
+              <Grid size={{ xs: 6, md: 2 }}>
+                <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center' }}>
+                  <ThumbUpIcon fontSize='large' sx={{ color: 'action.active' }} />
+                  <Typography variant='h5' color='text.secondary' sx={{ fontWeight: 600 }}>
+                    {t.score}
+                  </Typography>
+                </Box>
 
-                <Stack sx={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Rating readOnly value={company.score} precision={0.1} size='small' />
+                <Stack direction='row' spacing={1} sx={{ mt: 0.5, alignItems: 'center' }}>
+                  <Rating readOnly value={company.score} precision={0.1} size='medium' />
 
-                  <Typography variant='subtitle1'>{company.score}</Typography>
+                  <Typography variant='h6' sx={{ fontWeight: 600 }}>
+                    {company.score}
+                  </Typography>
                 </Stack>
               </Grid>
 
-              <Grid size={{ xs: 6, md: 3 }}>
-                <Typography variant='body2'>{t.minimumOrder}</Typography>
+              <Grid size={{ xs: 6, md: 2 }}>
+                <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center' }}>
+                  <LocalOfferIcon fontSize='large' sx={{ color: 'action.active' }} />
+                  <Typography variant='h5' color='text.secondary' sx={{ fontWeight: 600 }}>
+                    {t.minimumOrder}
+                  </Typography>
+                </Box>
 
-                <Typography variant='subtitle1'>
+                <Typography variant='h6' sx={{ fontWeight: 600, mt: 0.5 }}>
                   {company.minimumOrder} {t.piece}
                 </Typography>
               </Grid>
 
-              <Grid size={{ xs: 6, md: 3 }}>
-                <Typography variant='body2'>{t.leadTime}</Typography>
+              <Grid size={{ xs: 6, md: 2 }}>
+                <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center' }}>
+                  <WatchLaterIcon fontSize='large' sx={{ color: 'action.active' }} />
+                  <Typography variant='h5' color='text.secondary' sx={{ fontWeight: 600 }}>
+                    {t.leadTime}
+                  </Typography>
+                </Box>
 
-                <Typography variant='subtitle1'>
+                <Typography variant='h6' sx={{ fontWeight: 600, mt: 0.5 }}>
                   {company.leadTime} {t.day}
                 </Typography>
+              </Grid>
+
+              <Grid size={{ xs: 12, md: 4 }}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: { xs: 'stretch', md: 'flex-end' },
+                    alignItems: 'center',
+                    height: '100%',
+                  }}
+                >
+                  <Button
+                    variant='contained'
+                    size='large'
+                    startIcon={<SendIcon />}
+                    endIcon={<KeyboardArrowDownIcon />}
+                    onClick={() =>
+                      formRef.current?.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start',
+                      })
+                    }
+                    sx={{
+                      py: 1.75,
+                      px: 3,
+                      fontSize: '1.0625rem',
+                      fontWeight: 600,
+                      width: { xs: '100%', md: 'auto' },
+                      minHeight: 52,
+                    }}
+                  >
+                    {t.sendRequest}
+                  </Button>
+                </Box>
               </Grid>
             </Grid>
 
             <Divider sx={{ my: 3 }} />
 
-            <Typography variant='h6'>{t.certifications}</Typography>
+            <Typography variant='h6' sx={{ fontWeight: 600 }}>
+              {t.certifications}
+            </Typography>
 
             <Stack direction='row' spacing={1} useFlexGap sx={{ mt: 2 }}>
               {company.certifications.map((item) => {
@@ -224,6 +308,7 @@ export const ManufacturerDetailPage = () => {
                     color='warning'
                     variant='outlined'
                     sx={{ pl: 0.5 }}
+                    size='medium'
                   />
                 );
               })}
@@ -231,7 +316,9 @@ export const ManufacturerDetailPage = () => {
 
             <Divider sx={{ my: 3 }} />
 
-            <Typography variant='h6'>{t.aboutCompany}</Typography>
+            <Typography variant='h6' sx={{ fontWeight: 600 }}>
+              {t.aboutCompany}
+            </Typography>
 
             <Typography variant='body1' color='text.secondary' sx={{ mt: 2 }}>
               {company.shortDescription}
@@ -239,72 +326,115 @@ export const ManufacturerDetailPage = () => {
 
             <Divider sx={{ my: 3 }} />
 
-            <Typography variant='h6'>{t.gallery}</Typography>
+            <Typography variant='h6' sx={{ fontWeight: 600 }}>
+              {t.gallery}
+            </Typography>
 
-            <Grid container spacing={2} sx={{ mt: 1 }}>
-              {company.gallery.map((image) => (
-                <Grid key={image} size={{ xs: 12, sm: 6 }}>
-                  <Box
-                    onClick={() => setSelectedImage(image)}
-                    sx={{
-                      height: 220,
-                      borderRadius: 2,
-                      backgroundImage: `url(${image})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                      cursor: 'pointer',
-                    }}
-                  />
-                </Grid>
-              ))}
-            </Grid>
+            <ManufacturerGallery images={company.gallery} onImageOpen={setSelectedImage} />
           </Paper>
 
           <Paper
             ref={formRef}
+            elevation={0}
             sx={{
               p: 3,
-              borderRadius: 2,
+              borderRadius: 1,
               mt: 3,
+              border: '1px solid',
+              borderColor: 'divider',
             }}
           >
-            <RequestForm />
+            <RequestForm onSendingOverlayChange={setRequestSendingOverlay} />
           </Paper>
+          </Box>
+
+          {requestSendingOverlay ? (
+            <Box
+              sx={{
+                position: 'fixed',
+                top: 0,
+                left: { xs: 0, md: `${DESKTOP_NAV_WIDTH_PX}px` },
+                right: 0,
+                height: '100dvh',
+                zIndex: 1100,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                bgcolor: 'rgba(0, 0, 0, 0.32)',
+                backdropFilter: 'blur(6px)',
+                WebkitBackdropFilter: 'blur(6px)',
+              }}
+            >
+              <Stack spacing={2} sx={{ alignItems: 'center' }}>
+                <CircularProgress size={48} sx={{ color: 'common.white' }} />
+                <Typography variant='body1' sx={{ color: 'common.white', fontWeight: 600 }}>
+                  {t.sending}
+                </Typography>
+              </Stack>
+            </Box>
+          ) : null}
         </Box>
       </Fade>
 
-      <Modal open={Boolean(selectedImage)} onClose={() => setSelectedImage('')}>
+      <Modal open={Boolean(selectedImage)} onClose={() => setSelectedImage('')} hideBackdrop>
         <Box
           sx={{
-            width: '100vw',
-            height: '100vh',
-            bgcolor: 'black',
-            position: 'relative',
+            position: 'fixed',
+            inset: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            p: 2,
+            outline: 'none',
+            bgcolor: 'rgba(0, 0, 0, 0.48)',
           }}
+          tabIndex={-1}
+          onClick={() => setSelectedImage('')}
         >
-          <IconButton
-            onClick={() => setSelectedImage('')}
+          <Box
+            onClick={(event) => event.stopPropagation()}
             sx={{
-              position: 'absolute',
-              top: 12,
-              right: 12,
-              zIndex: 2,
-              color: 'white',
+              position: 'relative',
+              width: 'min(820px, 88vw)',
+              maxHeight: '70vh',
+              bgcolor: 'background.paper',
+              borderRadius: 1,
+              border: '1px solid',
+              borderColor: 'divider',
+              boxShadow: 24,
+              overflow: 'hidden',
             }}
           >
-            <CloseIcon />
-          </IconButton>
+            <IconButton
+              onClick={() => setSelectedImage('')}
+              size='small'
+              sx={{
+                position: 'absolute',
+                top: 8,
+                right: 8,
+                zIndex: 2,
+                bgcolor: 'background.paper',
+                border: '1px solid',
+                borderColor: 'divider',
+                '&:hover': { bgcolor: 'action.hover' },
+              }}
+            >
+              <CloseIcon fontSize='small' />
+            </IconButton>
 
-          <Box
-            sx={{
-              width: '100%',
-              height: '100%',
-              backgroundImage: `url(${selectedImage})`,
-              backgroundSize: 'contain',
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center',
-            }}
-          />
+            <Box
+              component='img'
+              src={selectedImage}
+              alt=''
+              sx={{
+                display: 'block',
+                width: '100%',
+                maxHeight: 'min(62vh, calc(70vh - 24px))',
+                objectFit: 'contain',
+                bgcolor: 'background.default',
+              }}
+            />
+          </Box>
         </Box>
       </Modal>
     </>

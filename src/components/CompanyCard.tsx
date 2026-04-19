@@ -24,7 +24,7 @@ import type { SvgIconComponent } from '@mui/icons-material';
 
 const loadedCards = new Set<string>();
 
-export default function CompanyCard({ cardData }: CompanyCardProps) {
+export default function CompanyCard({ cardData }: Readonly<CompanyCardProps>) {
   const currentLocale = useSelector((state: RootState) => state.locale.currentLocale);
   const [isLoaded, setIsLoaded] = useState<boolean>(loadedCards.has(cardData.id));
   const navigate = useNavigate();
@@ -48,17 +48,13 @@ export default function CompanyCard({ cardData }: CompanyCardProps) {
     <Fade in={isLoaded} timeout={300}>
       <Card
         elevation={0}
-        sx={(theme) => ({
+        sx={{
           borderRadius: 1,
           overflow: 'hidden',
           border: '1px solid',
           borderColor: 'divider',
           bgcolor: 'background.paper',
-          transition: 'all 100ms ease-in-out !important',
-          '&:hover': {
-            boxShadow: `0 0 20px 1px ${theme.palette.primary.light}`,
-          },
-        })}
+        }}
       >
         <Box
           sx={{
