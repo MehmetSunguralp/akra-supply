@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+import { APP_SCROLL_ROOT_ID } from '@/constants/appShell';
 import RequestForm from '@/components/RequestForm';
 import ManufacturerGallery from '@/components/ManufacturerGallery';
 import ManufacturerDetailSkeleton from '@/components/ManufacturerDetailSkeleton';
@@ -46,7 +47,6 @@ import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import type { SvgIconComponent } from '@mui/icons-material';
 
 const DESKTOP_NAV_WIDTH_PX = 240;
-const APP_SCROLL_ROOT_ID = 'app-scroll-root';
 
 export const ManufacturerDetailPage = () => {
   const { id } = useParams();

@@ -36,7 +36,7 @@ export const navMenu: NavMenuItem[] = [
   },
   {
     id: 'settings',
-    enabled: false,
+    enabled: true,
     icon: SettingsIcon,
     url: '/settings',
   },

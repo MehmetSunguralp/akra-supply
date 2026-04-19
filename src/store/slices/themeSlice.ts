@@ -1,10 +1,11 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
+import { readPersistedTheme } from '@/constants/preferencesStorage';
 import type { ThemeName, ThemeState } from '@/types/themes';
 
 const initialState: ThemeState = {
-  currentTheme: 'dark',
+  currentTheme: readPersistedTheme(),
 };
 
 const themeSlice = createSlice({

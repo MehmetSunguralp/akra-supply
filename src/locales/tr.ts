@@ -52,4 +52,19 @@ export const tr = {
     documents: 'Belgeler',
     settings: 'Ayarlar',
   },
+  settingsPage: {
+    title: 'Ayarlar',
+    languageSection: 'Dil',
+    languageHint: 'Arayüz dilini seçin.',
+    themeSection: 'Tema',
+    themeHint: 'Renk temasını seçin. Seçiminiz bu cihazda saklanır.',
+    languageTurkish: 'Türkçe',
+    languageEnglish: 'İngilizce',
+    themeNames: {
+      akra: 'Akra',
+      dark: 'Gece',
+      ocean: 'Okyanus',
+      luxury: 'Lüks',
+    },
+  },
 };

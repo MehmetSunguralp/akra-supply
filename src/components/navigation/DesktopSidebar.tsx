@@ -1,8 +1,9 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import type { RootState } from '@/store';
 import { navMenu } from '@/constants/navMenu';
 import { locales } from '@/locales';
+import type { NavMenuItem } from '@/types/navMenu';
 
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
@@ -13,12 +14,27 @@ import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 
+const isNavItemSelected = (pathname: string, item: NavMenuItem) => {
+  if (!item.url) return false;
+  if (item.id === 'manufacturers') {
+    return pathname === '/manufacturers' || pathname.startsWith('/manufacturers/');
+  }
+  return pathname === item.url;
+};
+
 export const DesktopSidebar = () => {
   const currentLocale = useSelector((state: RootState) => state.locale.currentLocale);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
   const menuStrings: Record<string, string> = locales[currentLocale].navMenu;
   const mainMenu = navMenu.filter((item) => item.id !== 'settings');
   const settingsItem = navMenu.find((item) => item.id === 'settings');
+
+  const goTo = (item: NavMenuItem) => {
+    if (!item.enabled || !item.url) return;
+    navigate(item.url);
+  };
 
   return (
     <Box
@@ -60,9 +76,9 @@ export const DesktopSidebar = () => {
             return (
               <ListItem key={menuItem.id} disablePadding>
                 <ListItemButton
-                  onClick={() => navigate('manufacturers')}
+                  onClick={() => goTo(menuItem)}
                   disabled={!menuItem.enabled}
-                  selected={menuItem.id === 'manufacturers'}
+                  selected={isNavItemSelected(pathname, menuItem)}
                 >
                   <ListItemIcon>
                     <Icon fontSize='medium' />
@@ -81,7 +97,11 @@ export const DesktopSidebar = () => {
           <List>
             {settingsItem && (
               <ListItem disablePadding>
-                <ListItemButton disabled={!settingsItem.enabled}>
+                <ListItemButton
+                  disabled={!settingsItem.enabled}
+                  selected={isNavItemSelected(pathname, settingsItem)}
+                  onClick={() => goTo(settingsItem)}
+                >
                   <ListItemIcon>
                     <settingsItem.icon fontSize='small' />
                   </ListItemIcon>

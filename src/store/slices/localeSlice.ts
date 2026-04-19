@@ -1,10 +1,11 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
+import { readPersistedLocale } from '@/constants/preferencesStorage';
 import type { LocaleName, LocaleState } from '@/types/locale';
 
 const initialState: LocaleState = {
-  currentLocale: 'tr',
+  currentLocale: readPersistedLocale(),
 };
 
 const localeSlice = createSlice({

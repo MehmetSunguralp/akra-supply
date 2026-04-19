@@ -52,4 +52,19 @@ export const en = {
     documents: 'Documents',
     settings: 'Settings',
   },
+  settingsPage: {
+    title: 'Settings',
+    languageSection: 'Language',
+    languageHint: 'Choose the interface language.',
+    themeSection: 'Theme',
+    themeHint: 'Pick a color theme. Your choice is saved on this device.',
+    languageTurkish: 'Turkish',
+    languageEnglish: 'English',
+    themeNames: {
+      akra: 'Akra',
+      dark: 'Midnight',
+      ocean: 'Ocean',
+      luxury: 'Luxury',
+    },
+  },
 };
