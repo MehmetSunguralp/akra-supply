@@ -10,37 +10,31 @@ import type { NavMenuItem } from '../types/navMenu';
 export const navMenu: NavMenuItem[] = [
   {
     id: 'manufacturers',
-    labelKey: 'navMenu.manufacturers',
     enabled: true,
     icon: FactoryIcon,
   },
   {
     id: 'products',
-    labelKey: 'navMenu.products',
     enabled: false,
     icon: Inventory2Icon,
   },
   {
     id: 'requests',
-    labelKey: 'navMenu.requests',
     enabled: false,
     icon: RequestQuoteIcon,
   },
   {
     id: 'shipping',
-    labelKey: 'navMenu.shipping',
     enabled: false,
     icon: LocalShippingIcon,
   },
   {
     id: 'documents',
-    labelKey: 'navMenu.documents',
     enabled: false,
     icon: DescriptionIcon,
   },
   {
     id: 'settings',
-    labelKey: 'navMenu.settings',
     enabled: false,
     icon: SettingsIcon,
   },

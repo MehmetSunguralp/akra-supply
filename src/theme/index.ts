@@ -5,6 +5,15 @@ const commonThemeOptions: ThemeOptions = {
     fontFamily: 'Open Sans, sans-serif',
   },
   shape: { borderRadius: 12 },
+  components: {
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 10,
+        },
+      },
+    },
+  },
 };
 
 export const themes = {
