@@ -1,24 +1,25 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Navigation } from '@/components/navigation/Navigation';
-import { ManufacturersPage } from '@/pages/ManufacturersPage';
-import { ManufacturerDetailPage } from '@/pages/ManufacturerDetailPage';
+import { Router } from '@/routes/index';
+import { Box } from '@mui/material';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
-    <>
-      <Navigation />
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Navigate to='/manufacturers' />}></Route>
-          <Route path='/manufacturers' element={<ManufacturersPage />} />
-          <Route
-            path='/manufacturers/:id'
-            element={<ManufacturerDetailPage />}
-          />
-          <Route path='*' element={<Navigate to='/manufacturers' />} />
-        </Routes>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Box sx={{ display: 'flex', height: '100dvh', overflow: 'hidden' }}>
+        <Navigation />
+        <Box
+          component='main'
+          sx={{
+            flexGrow: 1,
+            overflowY: 'auto',
+            overflowX: 'hidden',
+          }}
+        >
+          <Router />
+        </Box>
+      </Box>
+    </BrowserRouter>
   );
 }
 

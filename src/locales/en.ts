@@ -1,4 +1,26 @@
 export const en = {
+  common: {
+    city: 'City',
+    leadTime: 'Lead Time',
+    viewCompany: 'View Company',
+    minimumOrder: 'MOQ',
+    score: 'Rating',
+    category: 'Category',
+    day: 'Day(s)',
+    piece: 'Piece(s)',
+    categories: {
+      textile: 'Textile',
+      furniture: 'Furniture',
+      automotiveParts: 'Automotive Parts',
+      foodPackaging: 'Food Packaging',
+      plasticInjection: 'Plastic Injection',
+      steelManufacturing: 'Steel Manufacturing',
+      electronics: 'Electronics',
+      machinery: 'Machinery',
+      constructionMaterials: 'Construction Materials',
+      medicalSupplies: 'Medical Supplies',
+    },
+  },
   navMenu: {
     manufacturers: 'Manufacturers',
     products: 'Products',

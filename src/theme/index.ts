@@ -34,11 +34,11 @@ export const themes = {
     ...commonThemeOptions,
     palette: {
       mode: 'dark',
-      primary: { main: '#ECECEC' },
+      primary: { main: '#7387F5' },
       secondary: { main: '#C7C7C7' },
       background: {
-        default: '#1C2038',
-        paper: '#252B47',
+        default: '#121422',
+        paper: '#131729',
       },
     },
   }),
