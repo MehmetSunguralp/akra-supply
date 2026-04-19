@@ -1,5 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import type { RootState } from '@/store';
+import { navMenu } from '@/constants/navMenu';
+import { locales } from '@/locales';
 
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
@@ -10,14 +13,9 @@ import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 
-import { navMenu } from '@/constants/navMenu';
-import { locales } from '@/locales';
-
 export const DesktopSidebar = () => {
-  const currentLocale = useSelector(
-    (state: RootState) => state.locale.currentLocale,
-  );
-
+  const currentLocale = useSelector((state: RootState) => state.locale.currentLocale);
+  const navigate = useNavigate();
   const menuStrings: Record<string, string> = locales[currentLocale].navMenu;
   const mainMenu = navMenu.filter((item) => item.id !== 'settings');
   const settingsItem = navMenu.find((item) => item.id === 'settings');
@@ -54,9 +52,7 @@ export const DesktopSidebar = () => {
         </Typography>
       </Box>
 
-      <Box
-        sx={{ px: 1, flexGrow: 1, display: 'flex', flexDirection: 'column' }}
-      >
+      <Box sx={{ px: 1, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
         <List>
           {mainMenu.map((menuItem) => {
             const Icon = menuItem.icon;
@@ -64,6 +60,7 @@ export const DesktopSidebar = () => {
             return (
               <ListItem key={menuItem.id} disablePadding>
                 <ListItemButton
+                  onClick={() => navigate('manufacturers')}
                   disabled={!menuItem.enabled}
                   selected={menuItem.id === 'manufacturers'}
                 >

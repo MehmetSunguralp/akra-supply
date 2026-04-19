@@ -3,13 +3,11 @@ import type { Company, CompanyFilters } from '@/types/company';
 import type { ApiResponse } from '@/types/api';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_BASE_URL,
+  baseURL: import.meta.env.VITE_BASE_URL + '/mockData',
   timeout: 10000,
 });
 
-export const getAllCompanies = async (
-  filters?: CompanyFilters,
-): Promise<ApiResponse<Company[]>> => {
+export const getAllCompanies = async (filters?: CompanyFilters): Promise<ApiResponse<Company[]>> => {
   try {
     const params: Record<string, string | number> = {};
 
@@ -46,9 +44,7 @@ export const getAllCompanies = async (
   }
 };
 
-export const getCompanyById = async (
-  id: string,
-): Promise<ApiResponse<Company>> => {
+export const getCompanyById = async (id: string): Promise<ApiResponse<Company>> => {
   try {
     const response = await api.get<Company>(`/${id}`);
 

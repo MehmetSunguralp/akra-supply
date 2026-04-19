@@ -4,4 +4,5 @@ export interface NavMenuItem {
   id: string;
   enabled: boolean;
   icon: SvgIconComponent;
+  url?: string;
 }

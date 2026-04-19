@@ -44,7 +44,7 @@ export const themes = {
     ...commonThemeOptions,
     palette: {
       mode: 'dark',
-      primary: { main: '#FFA726' },
+      primary: { main: '#FFA726', light: 'rgba(255 168 38 / 0.53)' },
       secondary: { main: '#C7C7C7' },
       background: {
         default: '#0C0D18',

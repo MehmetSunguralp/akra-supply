@@ -8,9 +8,7 @@ type Props = {
 };
 
 export default function AppThemeProvider({ children }: Props) {
-  const currentTheme = useSelector(
-    (state: RootState) => state.theme.currentTheme,
-  );
+  const currentTheme = useSelector((state: RootState) => state.theme.currentTheme);
 
   return (
     <ThemeProvider theme={themes[currentTheme]}>

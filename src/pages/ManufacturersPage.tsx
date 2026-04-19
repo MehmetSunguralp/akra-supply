@@ -5,16 +5,20 @@ import type { Company } from '@/types/company';
 import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
 
+let cachedCompanies: Company[] | null = null;
+
 export const ManufacturersPage = () => {
-  const [companies, setCompanies] = useState<Company[]>([]);
+  const [companies, setCompanies] = useState<Company[]>(cachedCompanies || []);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
+    if (cachedCompanies) return;
     setLoading(true);
     getAllCompanies()
       .then((response) => {
         if (response.success) {
           setCompanies(response.data || []);
+          cachedCompanies = response.data || [];
         }
       })
       .finally(() => {
@@ -37,8 +41,7 @@ export const ManufacturersPage = () => {
         },
       }}
     >
-      {companies &&
-        companies.map((card) => <CompanyCard key={card.id} cardData={card} />)}
+      {companies && companies.map((card) => <CompanyCard key={card.id} cardData={card} />)}
       {loading &&
         Array(20)
           .fill('')

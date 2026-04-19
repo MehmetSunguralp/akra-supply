@@ -12,6 +12,7 @@ export const navMenu: NavMenuItem[] = [
     id: 'manufacturers',
     enabled: true,
     icon: FactoryIcon,
+    url: '/manufacturers',
   },
   {
     id: 'products',
@@ -37,5 +38,6 @@ export const navMenu: NavMenuItem[] = [
     id: 'settings',
     enabled: false,
     icon: SettingsIcon,
+    url: '/settings',
   },
 ];
