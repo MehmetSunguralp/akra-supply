@@ -1,5 +1,27 @@
-# Akra Supply
+# Akra Supply | [Live Demo](https://mehmetsunguralp.github.io/akra-supply/).
+## Screen Shots
+<img width="1907" height="942" alt="image" src="https://github.com/user-attachments/assets/2ef895b1-3dac-4fcb-9b6f-a4b46366d20d" />
 
+---
+
+<img width="1901" height="932" alt="image" src="https://github.com/user-attachments/assets/da2088f8-8c1e-45be-9382-0251282a86a4" />
+
+---
+
+<img alt="image" src="https://github.com/user-attachments/assets/4152c61d-fc56-46b2-938e-b3d834783a50" />
+
+---
+
+<img alt="image" src="https://github.com/user-attachments/assets/2931fa17-38af-4e5e-9f44-41310e767af7" />
+
+
+---
+
+<img alt="image" src="https://github.com/user-attachments/assets/3d3b3198-5e4b-4cfa-a655-4c5a9bb060a8" />
+
+---
+
+<img alt="image" src="https://github.com/user-attachments/assets/91bcbcae-9335-4241-8061-607fa0145fb2" />
 
 ## Prerequisites
 
@@ -66,7 +88,7 @@ The app supports installation as a Progressive Web App (PWA) on both desktop and
 3. Tap **Install app** or **Add to Home screen**.
 4. Confirm and open the app from your home screen.
 
-<img width="1000" height="702" alt="image" src="https://github.com/user-attachments/assets/bfc03190-9221-414d-a2d5-a2b70cca17cf" />
+<img alt="image" src="https://github.com/user-attachments/assets/bfc03190-9221-414d-a2d5-a2b70cca17cf" />
 
 
 ### iOS (Safari)
@@ -76,5 +98,5 @@ The app supports installation as a Progressive Web App (PWA) on both desktop and
 3. Scroll and select **Add to Home Screen**.
 4. Tap **Add** to finish.
 
-<img width="1520" height="1334" alt="image" src="https://github.com/user-attachments/assets/053afd9e-9b40-4134-a107-827ea738c732" />
+<img  alt="image" src="https://github.com/user-attachments/assets/053afd9e-9b40-4134-a107-827ea738c732" />
 
