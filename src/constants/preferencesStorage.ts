@@ -13,9 +13,7 @@ export function readPersistedLocale(): LocaleName {
   try {
     const raw = localStorage.getItem(PREFERENCE_STORAGE_KEYS.locale);
     if (raw === 'en' || raw === 'tr') return raw;
-  } catch {
-    /* ignore */
-  }
+  } catch {}
   return 'tr';
 }
 
@@ -24,8 +22,6 @@ export function readPersistedTheme(): ThemeName {
   try {
     const raw = localStorage.getItem(PREFERENCE_STORAGE_KEYS.theme);
     if (raw && (THEME_IDS as string[]).includes(raw)) return raw as ThemeName;
-  } catch {
-    /* ignore */
-  }
+  } catch {}
   return 'akra';
 }

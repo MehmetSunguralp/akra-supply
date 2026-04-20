@@ -98,6 +98,11 @@ export const ManufacturerDetailPage = () => {
 
   if (!company) return null;
 
+  const localizedShortDescription =
+    company.shortDescriptions?.[currentLocale] ??
+    company.shortDescriptions?.en ??
+    company.shortDescription;
+
   return (
     <>
       <Fade in timeout={400}>
@@ -332,7 +337,7 @@ export const ManufacturerDetailPage = () => {
             </Typography>
 
             <Typography variant='body1' color='text.secondary' sx={{ mt: 2 }}>
-              {company.shortDescription}
+              {localizedShortDescription}
             </Typography>
 
             <Divider sx={{ my: 3 }} />

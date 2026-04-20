@@ -1,3 +1,7 @@
+import type { LocaleName } from '@/types/locale';
+
+export type LocalizedShortDescriptions = Partial<Record<LocaleName, string>>;
+
 export interface Company {
   id: string;
   name: string;
@@ -7,6 +11,7 @@ export interface Company {
   leadTime: string;
   score: number;
   shortDescription: string;
+  shortDescriptions?: LocalizedShortDescriptions;
   coverImage: string;
   logo: string;
   gallery: string[];

@@ -10,17 +10,13 @@ export const persistPreferencesMiddleware: Middleware = () => (next) => (action)
   if (setLocale.match(action)) {
     try {
       localStorage.setItem(PREFERENCE_STORAGE_KEYS.locale, action.payload);
-    } catch {
-      /* ignore */
-    }
+    } catch {}
   }
 
   if (setTheme.match(action)) {
     try {
       localStorage.setItem(PREFERENCE_STORAGE_KEYS.theme, action.payload);
-    } catch {
-      /* ignore */
-    }
+    } catch {}
   }
 
   return result;
