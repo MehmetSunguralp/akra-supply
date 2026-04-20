@@ -23,6 +23,18 @@
 
 <img alt="image" src="https://github.com/user-attachments/assets/91bcbcae-9335-4241-8061-607fa0145fb2" />
 
+## About the App
+Akra Supply is a web application built to manage supply and ordering workflows through a modern, fast user interface.
+### Tech Stack
+- **Frontend:** React 19 + TypeScript
+- **Build Tool:** Vite
+- **UI:** MUI
+- **State Management:** Redux Toolkit + React Redux
+- **Forms & Validation:** Formik + Yup
+- **Routing:** React Router
+- **API & Mocking:** Axios + JSON Server
+- **Extra:** PWA support (`vite-plugin-pwa`)
+
 ## Prerequisites
 
 - Node.js 20+ (recommended)
