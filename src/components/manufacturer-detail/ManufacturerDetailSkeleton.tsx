@@ -2,7 +2,7 @@ import { Box, Paper, Skeleton, Stack } from '@mui/material';
 
 export default function ManufacturerDetailSkeleton() {
   return (
-    <Box sx={{ p: 3 }}>
+    <Box sx={{ p: { xs: 2, md: 3 } }}>
       <Skeleton variant='rounded' height={320} sx={{ borderRadius: 1, mb: 3 }} />
 
       <Paper
@@ -15,7 +15,7 @@ export default function ManufacturerDetailSkeleton() {
         }}
       >
         <Stack spacing={3}>
-          <Stack direction='row' spacing={2} sx={{ flexWrap: 'wrap' }}>
+          <Stack direction='row' useFlexGap spacing={2} sx={{ flexWrap: 'wrap' }}>
             <Skeleton variant='rounded' height={84} sx={{ flex: '1 1 18%', minWidth: 72, borderRadius: 1 }} />
             <Skeleton variant='rounded' height={84} sx={{ flex: '1 1 18%', minWidth: 72, borderRadius: 1 }} />
             <Skeleton variant='rounded' height={84} sx={{ flex: '1 1 18%', minWidth: 72, borderRadius: 1 }} />
@@ -24,7 +24,7 @@ export default function ManufacturerDetailSkeleton() {
           </Stack>
 
           <Skeleton variant='text' width={180} height={36} />
-          <Stack direction='row' spacing={1}>
+          <Stack direction='row' useFlexGap spacing={1} sx={{ flexWrap: 'wrap' }}>
             <Skeleton variant='rounded' width={100} height={34} sx={{ borderRadius: 1 }} />
             <Skeleton variant='rounded' width={100} height={34} sx={{ borderRadius: 1 }} />
             <Skeleton variant='rounded' width={100} height={34} sx={{ borderRadius: 1 }} />
@@ -36,7 +36,7 @@ export default function ManufacturerDetailSkeleton() {
           <Skeleton variant='text' width='88%' />
 
           <Skeleton variant='text' width={180} height={36} />
-          <Stack direction='row' spacing={1.25}>
+          <Stack direction='row' useFlexGap spacing={1.25} sx={{ flexWrap: { xs: 'wrap', md: 'nowrap' } }}>
             <Skeleton variant='rounded' height={140} sx={{ flex: 1, borderRadius: 1 }} />
             <Skeleton variant='rounded' height={140} sx={{ flex: 1, borderRadius: 1 }} />
             <Skeleton variant='rounded' height={140} sx={{ flex: 1, borderRadius: 1 }} />
