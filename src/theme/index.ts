@@ -25,13 +25,34 @@ const commonThemeOptions: ThemeOptions = {
         },
       ],
     },
+    MuiCssBaseline: {
+      styleOverrides: (theme) => ({
+        '*': {
+          scrollbarWidth: 'thin',
+          scrollbarColor: `${theme.palette.primary.main} ${theme.palette.background.paper}`,
+        },
+        '*::-webkit-scrollbar': {
+          width: 8,
+          height: 8,
+        },
+        '*::-webkit-scrollbar-track': {
+          background: theme.palette.background.paper,
+        },
+        '*::-webkit-scrollbar-thumb': {
+          backgroundColor: theme.palette.primary.main,
+          borderRadius: 999,
+          border: `2px solid ${theme.palette.background.paper}`,
+        },
+        '*::-webkit-scrollbar-thumb:hover': {
+          backgroundColor: theme.palette.primary.dark,
+        },
+      }),
+    },
   },
 };
 
-/** Display order on the settings page (2×2 cards). */
 export const THEME_ORDER: ThemeName[] = ['akra', 'ocean', 'dark', 'luxury'];
 
-/** Brand dark — warm gold on deep navy (distinct from Midnight’s cool blue). */
 const akra = createTheme({
   ...commonThemeOptions,
   palette: {
@@ -54,7 +75,6 @@ const akra = createTheme({
   },
 });
 
-/** Midnight — cool dark UI with blue / indigo accents (not gold like Akra). */
 const dark = createTheme({
   ...commonThemeOptions,
   palette: {
@@ -77,7 +97,6 @@ const dark = createTheme({
   },
 });
 
-/** Ocean — crisp light blues and teals on airy ice-white. */
 const ocean = createTheme({
   ...commonThemeOptions,
   palette: {
@@ -100,7 +119,6 @@ const ocean = createTheme({
   },
 });
 
-/** Luxury — warm bronze and amber on soft cream. */
 const luxury = createTheme({
   ...commonThemeOptions,
   palette: {

@@ -30,6 +30,7 @@ export const tr = {
     filterSearchPlaceholder: 'Firma adına göre ara',
     filterApply: 'Uygula',
     filterReset: 'Sıfırla',
+    filterToggle: 'Filtre',
     filterAll: 'Tümü',
     categories: {
       textile: 'Tekstil',

@@ -22,6 +22,7 @@ function App() {
             flexGrow: 1,
             overflowY: 'auto',
             overflowX: 'hidden',
+            pb: { xs: '84px', md: 0 },
           }}
         >
           <Router />

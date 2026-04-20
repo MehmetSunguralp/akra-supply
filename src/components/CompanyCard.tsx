@@ -59,7 +59,7 @@ export default function CompanyCard({ cardData }: Readonly<CompanyCardProps>) {
         <Box
           sx={{
             position: 'relative',
-            height: 140,
+            height: { xs: 120, sm: 140 },
             backgroundImage: `url(${cardData.coverImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -94,8 +94,8 @@ export default function CompanyCard({ cardData }: Readonly<CompanyCardProps>) {
             <Avatar
               src={cardData.logo}
               sx={{
-                width: 56,
-                height: 56,
+                width: { xs: 46, sm: 56 },
+                height: { xs: 46, sm: 56 },
                 bgcolor: 'white',
               }}
             />
@@ -104,6 +104,7 @@ export default function CompanyCard({ cardData }: Readonly<CompanyCardProps>) {
               <Typography
                 variant='h5'
                 sx={{
+                  fontSize: { xs: '1.05rem', sm: '1.5rem' },
                   textOverflow: 'ellipsis',
                   overflow: 'hidden',
                   whiteSpace: 'nowrap',
@@ -114,13 +115,15 @@ export default function CompanyCard({ cardData }: Readonly<CompanyCardProps>) {
 
               <Box sx={{ display: 'flex' }}>
                 <PlaceIcon fontSize='small' color='primary' />
-                <Typography variant='subtitle2'>{cardData.city.toLocaleUpperCase(currentLocale)}</Typography>
+                <Typography variant='subtitle2' sx={{ fontSize: { xs: '0.7rem', sm: '0.875rem' } }}>
+                  {cardData.city.toLocaleUpperCase(currentLocale)}
+                </Typography>
               </Box>
             </Box>
           </Box>
         </Box>
 
-        <Box sx={{ p: 2.5 }}>
+        <Box sx={{ p: { xs: 2, sm: 2.5 } }}>
           <Stack direction='row' spacing={1} useFlexGap sx={{ mb: 2.5 }}>
             {cardData.certifications.map((certificate) => {
               const Icon = certificateIcons[certificate] || VerifiedIcon;
@@ -150,10 +153,12 @@ export default function CompanyCard({ cardData }: Readonly<CompanyCardProps>) {
             <Box>
               <Box sx={{ display: 'flex', gap: 0.5 }}>
                 <CategoryIcon fontSize='small' />
-                <Typography variant='body2'>{cardStrings.category}</Typography>
+                <Typography variant='body2' sx={{ fontSize: { xs: '0.72rem', sm: '0.875rem' } }}>
+                  {cardStrings.category}
+                </Typography>
               </Box>
 
-              <Typography variant='subtitle1'>
+              <Typography variant='subtitle1' sx={{ fontSize: { xs: '0.86rem', sm: '1rem' } }}>
                 {cardStrings.categories[cardData.category as keyof typeof cardStrings.categories]}
               </Typography>
             </Box>
@@ -161,23 +166,29 @@ export default function CompanyCard({ cardData }: Readonly<CompanyCardProps>) {
             <Box>
               <Box sx={{ display: 'flex', gap: 0.5 }}>
                 <ThumbUpIcon fontSize='small' />
-                <Typography variant='body2'>{cardStrings.score}</Typography>
+                <Typography variant='body2' sx={{ fontSize: { xs: '0.72rem', sm: '0.875rem' } }}>
+                  {cardStrings.score}
+                </Typography>
               </Box>
 
               <Stack direction='row' sx={{ alignItems: 'center' }} spacing={0.5}>
                 <Rating readOnly value={cardData.score} precision={0.1} size='small' />
 
-                <Typography variant='subtitle1'>{cardData.score}</Typography>
+                <Typography variant='subtitle1' sx={{ fontSize: { xs: '0.86rem', sm: '1rem' } }}>
+                  {cardData.score}
+                </Typography>
               </Stack>
             </Box>
 
             <Box>
               <Box sx={{ display: 'flex', gap: 0.5 }}>
                 <LocalOfferIcon fontSize='small' />
-                <Typography variant='body2'>{cardStrings.minimumOrder}</Typography>
+                <Typography variant='body2' sx={{ fontSize: { xs: '0.72rem', sm: '0.875rem' } }}>
+                  {cardStrings.minimumOrder}
+                </Typography>
               </Box>
 
-              <Typography variant='subtitle1'>
+              <Typography variant='subtitle1' sx={{ fontSize: { xs: '0.86rem', sm: '1rem' } }}>
                 {cardData.minimumOrder} {cardStrings.piece}
               </Typography>
             </Box>
@@ -185,10 +196,12 @@ export default function CompanyCard({ cardData }: Readonly<CompanyCardProps>) {
             <Box>
               <Box sx={{ display: 'flex', gap: 0.5 }}>
                 <WatchLaterIcon fontSize='small' />
-                <Typography variant='body2'>{cardStrings.leadTime}</Typography>
+                <Typography variant='body2' sx={{ fontSize: { xs: '0.72rem', sm: '0.875rem' } }}>
+                  {cardStrings.leadTime}
+                </Typography>
               </Box>
 
-              <Typography variant='subtitle1'>
+              <Typography variant='subtitle1' sx={{ fontSize: { xs: '0.86rem', sm: '1rem' } }}>
                 {cardData.leadTime} {cardStrings.day}
               </Typography>
             </Box>
@@ -202,7 +215,8 @@ export default function CompanyCard({ cardData }: Readonly<CompanyCardProps>) {
             sx={{
               py: 1,
               fontWeight: 500,
-              letterSpacing: 2,
+              fontSize: { xs: '0.74rem', sm: '0.875rem' },
+              letterSpacing: { xs: 1, sm: 2 },
             }}
             onClick={() => navigate('/manufacturers/' + cardData.id)}
           >

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getCompaniesFromLocalDb, getCompanyByIdFromLocalDb } from '@/api/localApiFallback';
 import type { Company, CompanyFilters } from '@/types/company';
 import type { ApiResponse } from '@/types/api';
 
@@ -16,9 +17,8 @@ const applyCompanyFilters = (list: Company[], filters?: CompanyFilters): Company
   }
 
   if (filters?.city) {
-    companies = companies.filter(
-      (item) => item.city.localeCompare(filters.city!, 'tr', { sensitivity: 'base' }) === 0,
-    );
+    const selectedCity = filters.city;
+    companies = companies.filter((item) => item.city.localeCompare(selectedCity, 'tr', { sensitivity: 'base' }) === 0);
   }
 
   if (filters?.category) {
@@ -30,10 +30,11 @@ const applyCompanyFilters = (list: Company[], filters?: CompanyFilters): Company
   }
 
   if (filters?.leadTimeMax != null) {
+    const maxLeadTime = filters.leadTimeMax;
     companies = companies.filter((item) => {
       const parts = item.leadTime.split('-');
       const maxDay = Number(parts[1]);
-      return !Number.isNaN(maxDay) && maxDay <= filters.leadTimeMax!;
+      return !Number.isNaN(maxDay) && maxDay <= maxLeadTime;
     });
   }
 
@@ -41,27 +42,30 @@ const applyCompanyFilters = (list: Company[], filters?: CompanyFilters): Company
 };
 
 export const getAllCompanies = async (filters?: CompanyFilters): Promise<ApiResponse<Company[]>> => {
+  const toResponse = (raw: Company[]) => ({
+    success: true,
+    data: applyCompanyFilters(raw, filters),
+  });
+
   try {
     const params: Record<string, string | number> = {};
     if (filters?.city) params.city = filters.city;
     if (filters?.category) params.category = filters.category;
 
     const response = await api.get<Company[]>('/', { params });
-
-    const raw = response.data ?? [];
-    const companies = applyCompanyFilters(raw, filters);
-
-    return {
-      success: true,
-      data: companies,
-    };
+    return toResponse(response.data ?? []);
   } catch (error) {
-    console.error('getAllCompanies error:', error);
-
-    return {
-      success: false,
-      data: null,
-    };
+    console.warn('getAllCompanies remote failed, using local db fallback:', error);
+    try {
+      const localData = await getCompaniesFromLocalDb();
+      return toResponse(localData);
+    } catch (fallbackError) {
+      console.error('getAllCompanies fallback failed:', fallbackError);
+      return {
+        success: false,
+        data: null,
+      };
+    }
   }
 };
 
@@ -74,11 +78,19 @@ export const getCompanyById = async (id: string): Promise<ApiResponse<Company>> 
       data: response.data,
     };
   } catch (error) {
-    console.error('getCompanyById error:', error);
-
-    return {
-      success: false,
-      data: null,
-    };
+    console.warn('getCompanyById remote failed, using local db fallback:', error);
+    try {
+      const company = await getCompanyByIdFromLocalDb(id);
+      return {
+        success: company != null,
+        data: company,
+      };
+    } catch (fallbackError) {
+      console.error('getCompanyById fallback failed:', fallbackError);
+      return {
+        success: false,
+        data: null,
+      };
+    }
   }
 };

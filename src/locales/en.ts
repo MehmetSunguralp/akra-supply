@@ -30,6 +30,7 @@ export const en = {
     filterSearchPlaceholder: 'Search by company name',
     filterApply: 'Apply',
     filterReset: 'Reset',
+    filterToggle: 'Filter',
     filterAll: 'All',
     categories: {
       textile: 'Textile',
