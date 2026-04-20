@@ -52,79 +52,85 @@ export const ManufacturerContent = ({
           borderColor: 'divider',
         }}
       >
-        <Grid container spacing={{ xs: 2, md: 3 }} sx={{ alignItems: 'center' }}>
-          <Grid size={{ xs: 6, md: 2 }}>
+        <Grid container spacing={{ xs: 2, md: 2.5, xl: 3 }} sx={{ alignItems: 'center' }}>
+          <Grid size={{ xs: 6, md: 6, xl: 2 }}>
             <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center' }}>
-              <CategoryIcon sx={{ color: 'action.active', fontSize: { xs: 18, md: 32 } }} />
+              <CategoryIcon sx={{ color: 'action.active', fontSize: { xs: 18, md: 22, xl: 30 } }} />
               <Typography
                 variant='h5'
                 color='text.secondary'
-                sx={{ fontWeight: 600, fontSize: { xs: '0.74rem', md: '1.5rem' } }}
+                sx={{ fontWeight: 600, fontSize: { xs: '0.74rem', md: '1rem', xl: '1.2rem' } }}
               >
                 {labels.category}
               </Typography>
             </Box>
-            <Typography variant='h6' sx={{ fontWeight: 600, mt: 0.5, fontSize: { xs: '0.82rem', md: '1.25rem' } }}>
+            <Typography variant='h6' sx={{ fontWeight: 600, mt: 0.5, fontSize: { xs: '0.82rem', md: '1rem', xl: '1.1rem' } }}>
               {labels.categories[company.category]}
             </Typography>
           </Grid>
 
-          <Grid size={{ xs: 6, md: 2 }}>
+          <Grid size={{ xs: 6, md: 6, xl: 2 }}>
             <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center' }}>
-              <ThumbUpIcon sx={{ color: 'action.active', fontSize: { xs: 18, md: 32 } }} />
+              <ThumbUpIcon sx={{ color: 'action.active', fontSize: { xs: 18, md: 22, xl: 30 } }} />
               <Typography
                 variant='h5'
                 color='text.secondary'
-                sx={{ fontWeight: 600, fontSize: { xs: '0.74rem', md: '1.5rem' } }}
+                sx={{ fontWeight: 600, fontSize: { xs: '0.74rem', md: '1rem', xl: '1.2rem' } }}
               >
                 {labels.score}
               </Typography>
             </Box>
             <Stack direction='row' spacing={1} sx={{ mt: 0.5, alignItems: 'center' }}>
               <Rating readOnly value={company.score} precision={0.1} size='small' />
-              <Typography variant='h6' sx={{ fontWeight: 600, fontSize: { xs: '0.82rem', md: '1.25rem' } }}>
+              <Typography variant='h6' sx={{ fontWeight: 600, fontSize: { xs: '0.82rem', md: '1rem', xl: '1.1rem' } }}>
                 {company.score}
               </Typography>
             </Stack>
           </Grid>
 
-          <Grid size={{ xs: 6, md: 2 }}>
+          <Grid size={{ xs: 6, md: 6, xl: 2 }}>
             <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center' }}>
-              <LocalOfferIcon sx={{ color: 'action.active', fontSize: { xs: 18, md: 32 } }} />
+              <LocalOfferIcon sx={{ color: 'action.active', fontSize: { xs: 18, md: 22, xl: 30 } }} />
               <Typography
                 variant='h5'
                 color='text.secondary'
-                sx={{ fontWeight: 600, fontSize: { xs: '0.74rem', md: '1.5rem' } }}
+                sx={{ fontWeight: 600, fontSize: { xs: '0.74rem', md: '1rem', xl: '1.2rem' } }}
               >
                 {labels.minimumOrder}
               </Typography>
             </Box>
-            <Typography variant='h6' sx={{ fontWeight: 600, mt: 0.5, fontSize: { xs: '0.82rem', md: '1.25rem' } }}>
+            <Typography
+              variant='h6'
+              sx={{ fontWeight: 600, mt: 0.5, fontSize: { xs: '0.82rem', md: '1rem', xl: '1.1rem' }, whiteSpace: 'nowrap' }}
+            >
               {company.minimumOrder} {labels.piece}
             </Typography>
           </Grid>
 
-          <Grid size={{ xs: 6, md: 2 }}>
+          <Grid size={{ xs: 6, md: 6, xl: 2 }}>
             <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center' }}>
-              <WatchLaterIcon sx={{ color: 'action.active', fontSize: { xs: 18, md: 32 } }} />
+              <WatchLaterIcon sx={{ color: 'action.active', fontSize: { xs: 18, md: 22, xl: 30 } }} />
               <Typography
                 variant='h5'
                 color='text.secondary'
-                sx={{ fontWeight: 600, fontSize: { xs: '0.74rem', md: '1.5rem' } }}
+                sx={{ fontWeight: 600, fontSize: { xs: '0.74rem', md: '1rem', xl: '1.2rem' } }}
               >
                 {labels.leadTime}
               </Typography>
             </Box>
-            <Typography variant='h6' sx={{ fontWeight: 600, mt: 0.5, fontSize: { xs: '0.82rem', md: '1.25rem' } }}>
+            <Typography
+              variant='h6'
+              sx={{ fontWeight: 600, mt: 0.5, fontSize: { xs: '0.82rem', md: '1rem', xl: '1.1rem' }, whiteSpace: 'nowrap' }}
+            >
               {company.leadTime} {labels.day}
             </Typography>
           </Grid>
 
-          <Grid size={{ xs: 12, md: 4 }}>
+          <Grid size={{ xs: 12, md: 12, xl: 4 }}>
             <Box
               sx={{
                 display: 'flex',
-                justifyContent: { xs: 'stretch', md: 'flex-end' },
+                justifyContent: { xs: 'stretch', xl: 'flex-end' },
                 alignItems: 'center',
                 height: '100%',
               }}
@@ -141,12 +147,12 @@ export const ManufacturerContent = ({
                   })
                 }
                 sx={{
-                  py: { xs: 1.1, md: 1.75 },
-                  px: { xs: 1.5, md: 3 },
-                  fontSize: { xs: '0.85rem', md: '1.0625rem' },
+                  py: { xs: 1.1, md: 1.25, xl: 1.75 },
+                  px: { xs: 1.5, md: 2.25, xl: 3 },
+                  fontSize: { xs: '0.82rem', md: '0.88rem', xl: '0.95rem' },
                   fontWeight: 600,
-                  width: { xs: '100%', md: 'auto' },
-                  minHeight: { xs: 42, md: 52 },
+                  width: { xs: '100%', md: '100%', xl: 'auto' },
+                  minHeight: { xs: 42, md: 46, xl: 52 },
                 }}
               >
                 {labels.sendRequest}

@@ -3,10 +3,13 @@ import { getCompaniesFromLocalDb, getCompanyByIdFromLocalDb } from '@/api/localA
 import type { Company, CompanyFilters } from '@/types/company';
 import type { ApiResponse } from '@/types/api';
 
-const api = axios.create({
-  baseURL: import.meta.env.VITE_BASE_URL + '/mockData',
-  timeout: 10000,
-});
+const remoteBaseUrl = import.meta.env.VITE_BASE_URL?.trim();
+const api = remoteBaseUrl
+  ? axios.create({
+      baseURL: `${remoteBaseUrl}/mockData`,
+      timeout: 10000,
+    })
+  : null;
 
 const applyCompanyFilters = (list: Company[], filters?: CompanyFilters): Company[] => {
   let companies = [...list];
@@ -49,6 +52,8 @@ export const getAllCompanies = async (filters?: CompanyFilters): Promise<ApiResp
   });
 
   try {
+    if (!api) throw new Error('VITE_BASE_URL is not configured');
+
     const params: Record<string, string | number> = {};
     if (filters?.city) params.city = filters.city;
     if (filters?.category) params.category = filters.category;
@@ -72,6 +77,8 @@ export const getAllCompanies = async (filters?: CompanyFilters): Promise<ApiResp
 
 export const getCompanyById = async (id: string): Promise<ApiResponse<Company>> => {
   try {
+    if (!api) throw new Error('VITE_BASE_URL is not configured');
+
     const response = await api.get<Company>(`/${id}`);
 
     return {

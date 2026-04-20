@@ -48,6 +48,9 @@ export default function CompanyCard({ cardData }: Readonly<CompanyCardProps>) {
       <Card
         elevation={0}
         sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
           borderRadius: 1,
           overflow: 'hidden',
           border: '1px solid',
@@ -63,7 +66,7 @@ export default function CompanyCard({ cardData }: Readonly<CompanyCardProps>) {
           onImageLoad={handleImageLoad}
         />
 
-        <Box sx={{ p: { xs: 2, sm: 2.5 } }}>
+        <Box sx={{ p: { xs: 2, sm: 2.5 }, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
           <CompanyCardCertifications certifications={cardData.certifications} iconMap={certificateIcons} />
           <CompanyCardDetailsGrid cardData={cardData} strings={cardStrings} />
 
@@ -77,6 +80,7 @@ export default function CompanyCard({ cardData }: Readonly<CompanyCardProps>) {
               fontWeight: 500,
               fontSize: { xs: '0.74rem', sm: '0.875rem' },
               letterSpacing: { xs: 1, sm: 2 },
+              mt: 'auto',
             }}
             onClick={() => navigate('/manufacturers/' + cardData.id)}
           >

@@ -44,6 +44,8 @@ export const ManufacturersFilterBar = memo(function ManufacturersFilterBar({
   }, [currentLocale]);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isCompactDesktop = useMediaQuery('(max-width:1360px)');
+  const useDrawerFilters = isMobile || isCompactDesktop;
 
   const [draftSearch, setDraftSearch] = useState('');
   const [draftCity, setDraftCity] = useState('');
@@ -60,7 +62,7 @@ export const ManufacturersFilterBar = memo(function ManufacturersFilterBar({
         minScore: draftMinScore,
       }),
     );
-    if (isMobile) setMobileOpen(false);
+    if (useDrawerFilters) setMobileOpen(false);
   };
 
   const handleReset = () => {
@@ -69,7 +71,7 @@ export const ManufacturersFilterBar = memo(function ManufacturersFilterBar({
     setDraftCategory('');
     setDraftMinScore(0);
     onReset();
-    if (isMobile) setMobileOpen(false);
+    if (useDrawerFilters) setMobileOpen(false);
   };
 
   const filterControls = (
@@ -107,7 +109,7 @@ export const ManufacturersFilterBar = memo(function ManufacturersFilterBar({
       }}
     >
       <Box sx={{ px: { xs: 2, sm: 3 }, py: 2 }}>
-        {isMobile ? (
+        {useDrawerFilters ? (
           <>
             <Button
               variant='outlined'

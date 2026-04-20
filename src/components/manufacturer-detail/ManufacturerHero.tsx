@@ -98,7 +98,7 @@ export const ManufacturerHero = ({
                 color: 'common.white',
                 textShadow: '0 2px 16px rgba(0,0,0,0.45)',
                 fontWeight: 600,
-                fontSize: { xs: '1.2rem', sm: '1.8rem', md: '2.75rem' },
+                fontSize: { xs: '1.1rem', sm: '1.5rem', md: '2.25rem' },
                 lineHeight: 1.15,
               }}
             >
@@ -113,7 +113,7 @@ export const ManufacturerHero = ({
                   color: 'common.white',
                   textShadow: '0 2px 12px rgba(0,0,0,0.4)',
                   fontWeight: 500,
-                  fontSize: { xs: '0.82rem', sm: '1.15rem', md: '2.125rem' },
+                  fontSize: { xs: '0.78rem', sm: '1rem', md: '1.4rem' },
                   lineHeight: 1.15,
                 }}
               >

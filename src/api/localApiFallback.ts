@@ -5,6 +5,7 @@ type LocalDbPayload = {
 };
 
 const SIMULATED_DELAY_MS = 750;
+const localDbUrl = new URL('../../db.json', import.meta.url);
 
 const wait = (ms: number) =>
   new Promise<void>((resolve) => {
@@ -12,7 +13,7 @@ const wait = (ms: number) =>
   });
 
 export const getCompaniesFromLocalDb = async (): Promise<Company[]> => {
-  const response = await fetch('/db.json', { cache: 'no-store' });
+  const response = await fetch(localDbUrl, { cache: 'no-store' });
   if (!response.ok) {
     throw new Error(`Local fallback request failed with status ${response.status}`);
   }

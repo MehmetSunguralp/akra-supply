@@ -20,21 +20,31 @@ export const CompanyCardDetailsGrid = ({ cardData, strings }: CompanyCardDetails
         gridTemplateColumns: '1fr 1fr',
         gap: 1,
         mb: 1,
+        flexGrow: 1,
       }}
     >
-      <Box>
+      <Box sx={{ minHeight: 72 }}>
         <Box sx={{ display: 'flex', gap: 0.5 }}>
           <CategoryIcon fontSize='small' />
           <Typography variant='body2' sx={{ fontSize: { xs: '0.72rem', sm: '0.875rem' } }}>
             {strings.category}
           </Typography>
         </Box>
-        <Typography variant='subtitle1' sx={{ fontSize: { xs: '0.86rem', sm: '1rem' } }}>
+        <Typography
+          variant='subtitle1'
+          sx={{
+            fontSize: { xs: '0.86rem', sm: '1rem' },
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+          }}
+        >
           {strings.categories[cardData.category]}
         </Typography>
       </Box>
 
-      <Box>
+      <Box sx={{ minHeight: 72 }}>
         <Box sx={{ display: 'flex', gap: 0.5 }}>
           <ThumbUpIcon fontSize='small' />
           <Typography variant='body2' sx={{ fontSize: { xs: '0.72rem', sm: '0.875rem' } }}>
@@ -49,7 +59,7 @@ export const CompanyCardDetailsGrid = ({ cardData, strings }: CompanyCardDetails
         </Stack>
       </Box>
 
-      <Box>
+      <Box sx={{ minHeight: 72 }}>
         <Box sx={{ display: 'flex', gap: 0.5 }}>
           <LocalOfferIcon fontSize='small' />
           <Typography variant='body2' sx={{ fontSize: { xs: '0.72rem', sm: '0.875rem' } }}>
@@ -61,7 +71,7 @@ export const CompanyCardDetailsGrid = ({ cardData, strings }: CompanyCardDetails
         </Typography>
       </Box>
 
-      <Box>
+      <Box sx={{ minHeight: 72 }}>
         <Box sx={{ display: 'flex', gap: 0.5 }}>
           <WatchLaterIcon fontSize='small' />
           <Typography variant='body2' sx={{ fontSize: { xs: '0.72rem', sm: '0.875rem' } }}>
