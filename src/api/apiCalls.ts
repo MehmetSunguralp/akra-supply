@@ -26,7 +26,8 @@ const applyCompanyFilters = (list: Company[], filters?: CompanyFilters): Company
   }
 
   if (filters?.minScore != null && filters.minScore > 0) {
-    companies = companies.filter((item) => item.score >= filters.minScore);
+    const minScore = filters.minScore;
+    companies = companies.filter((item) => item.score >= minScore);
   }
 
   if (filters?.leadTimeMax != null) {
