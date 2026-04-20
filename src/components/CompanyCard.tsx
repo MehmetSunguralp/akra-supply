@@ -59,7 +59,7 @@ export default function CompanyCard({ cardData }: Readonly<CompanyCardProps>) {
         <Box
           sx={{
             position: 'relative',
-            height: { xs: 120, sm: 140 },
+            height: { xs: 80, sm: 140 },
             backgroundImage: `url(${cardData.coverImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -76,7 +76,10 @@ export default function CompanyCard({ cardData }: Readonly<CompanyCardProps>) {
             sx={{
               position: 'absolute',
               inset: 0,
-              background: 'linear-gradient(to bottom, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.6) 30%, rgba(0,0,0,0.9) 100%)',
+              background: (theme) =>
+                theme.palette.mode === 'light'
+                  ? 'linear-gradient(to bottom, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.45) 35%, rgba(255,255,255,0.82) 100%)'
+                  : 'linear-gradient(to bottom, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.6) 30%, rgba(0,0,0,0.9) 100%)',
             }}
           />
 

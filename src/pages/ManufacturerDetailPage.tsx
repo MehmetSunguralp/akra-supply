@@ -102,28 +102,30 @@ export const ManufacturerDetailPage = () => {
     <>
       <Fade in timeout={400}>
         <Box sx={{ position: 'relative' }}>
-          <Box sx={{ p: 3 }}>
+          <Box sx={{ p: { xs: 1.5, sm: 2, md: 3 } }}>
           <IconButton
             onClick={() => navigate(-1)}
             aria-label={t.back}
             sx={{
               position: 'fixed',
-              top: 32,
-              left: { xs: 16, md: `calc(${DESKTOP_NAV_WIDTH_PX}px + 32px)` },
+              top: { xs: 12, sm: 16, md: 32 },
+              left: { xs: 12, sm: 16, md: `calc(${DESKTOP_NAV_WIDTH_PX}px + 32px)` },
               zIndex: 1200,
               bgcolor: 'background.paper',
               border: '1px solid',
               borderColor: 'divider',
               boxShadow: 2,
+              width: { xs: 36, sm: 40, md: 44 },
+              height: { xs: 36, sm: 40, md: 44 },
               '&:hover': { bgcolor: 'action.hover' },
             }}
           >
-            <ArrowBackIcon />
+            <ArrowBackIcon fontSize='small' />
           </IconButton>
 
           <Box
             sx={{
-              height: { xs: 220, md: 320 },
+              height: { xs: 170, sm: 220, md: 320 },
               borderRadius: 1,
               overflow: 'hidden',
               position: 'relative',
@@ -146,19 +148,19 @@ export const ManufacturerDetailPage = () => {
             <Box
               sx={{
                 position: 'absolute',
-                left: 24,
-                right: 24,
-                bottom: 24,
+                left: { xs: 12, sm: 16, md: 24 },
+                right: { xs: 12, sm: 16, md: 24 },
+                bottom: { xs: 12, sm: 16, md: 24 },
                 display: 'flex',
-                gap: 2,
+                gap: { xs: 1, sm: 1.5, md: 2 },
                 alignItems: 'flex-end',
               }}
             >
               <Avatar
                 src={company.logo}
                 sx={{
-                  width: 88,
-                  height: 88,
+                  width: { xs: 52, sm: 68, md: 88 },
+                  height: { xs: 52, sm: 68, md: 88 },
                   bgcolor: 'white',
                   border: '3px solid white',
                   boxShadow: '0 8px 24px rgba(0,0,0,0.35)',
@@ -172,6 +174,8 @@ export const ManufacturerDetailPage = () => {
                     color: 'common.white',
                     textShadow: '0 2px 16px rgba(0,0,0,0.45)',
                     fontWeight: 600,
+                    fontSize: { xs: '1.2rem', sm: '1.8rem', md: '2.75rem' },
+                    lineHeight: 1.15,
                   }}
                 >
                   {company.name}
@@ -185,6 +189,8 @@ export const ManufacturerDetailPage = () => {
                       color: 'common.white',
                       textShadow: '0 2px 12px rgba(0,0,0,0.4)',
                       fontWeight: 500,
+                      fontSize: { xs: '0.82rem', sm: '1.15rem', md: '2.125rem' },
+                      lineHeight: 1.15,
                     }}
                   >
                     {company.city.toLocaleUpperCase(currentLocale)}
@@ -197,38 +203,38 @@ export const ManufacturerDetailPage = () => {
           <Paper
             elevation={0}
             sx={{
-              p: 3,
+              p: { xs: 1.5, sm: 2.25, md: 3 },
               borderRadius: 1,
               border: '1px solid',
               borderColor: 'divider',
             }}
           >
-            <Grid container spacing={3} sx={{ alignItems: 'center' }}>
+            <Grid container spacing={{ xs: 2, md: 3 }} sx={{ alignItems: 'center' }}>
               <Grid size={{ xs: 6, md: 2 }}>
                 <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center' }}>
-                  <CategoryIcon fontSize='large' sx={{ color: 'action.active' }} />
-                  <Typography variant='h5' color='text.secondary' sx={{ fontWeight: 600 }}>
+                  <CategoryIcon sx={{ color: 'action.active', fontSize: { xs: 18, md: 32 } }} />
+                  <Typography variant='h5' color='text.secondary' sx={{ fontWeight: 600, fontSize: { xs: '0.74rem', md: '1.5rem' } }}>
                     {t.category}
                   </Typography>
                 </Box>
 
-                <Typography variant='h6' sx={{ fontWeight: 600, mt: 0.5 }}>
+                <Typography variant='h6' sx={{ fontWeight: 600, mt: 0.5, fontSize: { xs: '0.82rem', md: '1.25rem' } }}>
                   {t.categories[company.category as keyof typeof t.categories]}
                 </Typography>
               </Grid>
 
               <Grid size={{ xs: 6, md: 2 }}>
                 <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center' }}>
-                  <ThumbUpIcon fontSize='large' sx={{ color: 'action.active' }} />
-                  <Typography variant='h5' color='text.secondary' sx={{ fontWeight: 600 }}>
+                  <ThumbUpIcon sx={{ color: 'action.active', fontSize: { xs: 18, md: 32 } }} />
+                  <Typography variant='h5' color='text.secondary' sx={{ fontWeight: 600, fontSize: { xs: '0.74rem', md: '1.5rem' } }}>
                     {t.score}
                   </Typography>
                 </Box>
 
                 <Stack direction='row' spacing={1} sx={{ mt: 0.5, alignItems: 'center' }}>
-                  <Rating readOnly value={company.score} precision={0.1} size='medium' />
+                  <Rating readOnly value={company.score} precision={0.1} size='small' />
 
-                  <Typography variant='h6' sx={{ fontWeight: 600 }}>
+                  <Typography variant='h6' sx={{ fontWeight: 600, fontSize: { xs: '0.82rem', md: '1.25rem' } }}>
                     {company.score}
                   </Typography>
                 </Stack>
@@ -236,26 +242,26 @@ export const ManufacturerDetailPage = () => {
 
               <Grid size={{ xs: 6, md: 2 }}>
                 <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center' }}>
-                  <LocalOfferIcon fontSize='large' sx={{ color: 'action.active' }} />
-                  <Typography variant='h5' color='text.secondary' sx={{ fontWeight: 600 }}>
+                  <LocalOfferIcon sx={{ color: 'action.active', fontSize: { xs: 18, md: 32 } }} />
+                  <Typography variant='h5' color='text.secondary' sx={{ fontWeight: 600, fontSize: { xs: '0.74rem', md: '1.5rem' } }}>
                     {t.minimumOrder}
                   </Typography>
                 </Box>
 
-                <Typography variant='h6' sx={{ fontWeight: 600, mt: 0.5 }}>
+                <Typography variant='h6' sx={{ fontWeight: 600, mt: 0.5, fontSize: { xs: '0.82rem', md: '1.25rem' } }}>
                   {company.minimumOrder} {t.piece}
                 </Typography>
               </Grid>
 
               <Grid size={{ xs: 6, md: 2 }}>
                 <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center' }}>
-                  <WatchLaterIcon fontSize='large' sx={{ color: 'action.active' }} />
-                  <Typography variant='h5' color='text.secondary' sx={{ fontWeight: 600 }}>
+                  <WatchLaterIcon sx={{ color: 'action.active', fontSize: { xs: 18, md: 32 } }} />
+                  <Typography variant='h5' color='text.secondary' sx={{ fontWeight: 600, fontSize: { xs: '0.74rem', md: '1.5rem' } }}>
                     {t.leadTime}
                   </Typography>
                 </Box>
 
-                <Typography variant='h6' sx={{ fontWeight: 600, mt: 0.5 }}>
+                <Typography variant='h6' sx={{ fontWeight: 600, mt: 0.5, fontSize: { xs: '0.82rem', md: '1.25rem' } }}>
                   {company.leadTime} {t.day}
                 </Typography>
               </Grid>
@@ -281,12 +287,12 @@ export const ManufacturerDetailPage = () => {
                       })
                     }
                     sx={{
-                      py: 1.75,
-                      px: 3,
-                      fontSize: '1.0625rem',
+                      py: { xs: 1.1, md: 1.75 },
+                      px: { xs: 1.5, md: 3 },
+                      fontSize: { xs: '0.85rem', md: '1.0625rem' },
                       fontWeight: 600,
                       width: { xs: '100%', md: 'auto' },
-                      minHeight: 52,
+                      minHeight: { xs: 42, md: 52 },
                     }}
                   >
                     {t.sendRequest}
@@ -301,7 +307,7 @@ export const ManufacturerDetailPage = () => {
               {t.certifications}
             </Typography>
 
-            <Stack direction='row' spacing={1} useFlexGap sx={{ mt: 2 }}>
+            <Stack direction='row' spacing={1} useFlexGap sx={{ mt: 2, flexWrap: 'wrap' }}>
               {company.certifications.map((item) => {
                 const Icon = certificateIcons[item] || VerifiedIcon;
 
@@ -342,7 +348,7 @@ export const ManufacturerDetailPage = () => {
             ref={formRef}
             elevation={0}
             sx={{
-              p: 3,
+              p: { xs: 1.5, sm: 2.25, md: 3 },
               borderRadius: 1,
               mt: 3,
               border: '1px solid',
@@ -400,8 +406,8 @@ export const ManufacturerDetailPage = () => {
             onClick={(event) => event.stopPropagation()}
             sx={{
               position: 'relative',
-              width: 'min(820px, 88vw)',
-              maxHeight: '70vh',
+              width: { xs: '96vw', sm: 'min(820px, 88vw)' },
+              maxHeight: { xs: '80vh', sm: '70vh' },
               bgcolor: 'background.paper',
               borderRadius: 1,
               border: '1px solid',

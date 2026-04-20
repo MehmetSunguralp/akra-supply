@@ -60,14 +60,14 @@ export const MobileBar = () => {
         ref={scrollerRef}
         sx={{
           display: 'flex',
-          justifyContent: 'flex-start',
-          gap: 0.75,
-          px: 2,
+          justifyContent: { xs: 'flex-start', sm: 'stretch' },
+          gap: { xs: 0.75, sm: 0.5 },
+          px: { xs: 2, sm: 1 },
           pt: 0.75,
           pb: 'calc(0.75rem + env(safe-area-inset-bottom))',
-          overflowX: 'auto',
+          overflowX: { xs: 'auto', sm: 'hidden' },
           overflowY: 'hidden',
-          scrollSnapType: 'x proximity',
+          scrollSnapType: { xs: 'x proximity', sm: 'none' },
           WebkitOverflowScrolling: 'touch',
           '&::-webkit-scrollbar': { display: 'none' },
           scrollbarWidth: 'none',
@@ -88,13 +88,14 @@ export const MobileBar = () => {
               }}
               disabled={!item.enabled}
               sx={{
-                flex: '0 0 auto',
-                width: itemWidth,
+                flex: { xs: '0 0 auto', sm: '1 1 0' },
+                width: { xs: itemWidth, sm: 'auto' },
+                minWidth: { xs: itemWidth, sm: 0 },
                 px: 1.25,
                 py: 0.75,
                 borderRadius: 0.5,
                 opacity: item.enabled ? 1 : 0.42,
-                scrollSnapAlign: 'start',
+                scrollSnapAlign: { xs: 'start', sm: 'none' },
                 bgcolor: selected ? 'action.selected' : 'transparent',
                 color: selected ? 'primary.main' : 'text.secondary',
               }}
