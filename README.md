@@ -1,5 +1,6 @@
 # Akra Supply
 
+
 ## Prerequisites
 
 - Node.js 20+ (recommended)
@@ -55,7 +56,8 @@ The app supports installation as a Progressive Web App (PWA) on both desktop and
 3. Confirm installation.
 4. Launch the installed app from your desktop/start menu.
 
-> Screenshot placeholder: Desktop install prompt (`docs/images/pwa-desktop-install.png`)
+<img width="642" height="854" alt="image" src="https://github.com/user-attachments/assets/34bc7879-c331-4587-a6ba-2a843523d05e" />
+
 
 ### Android (Chrome)
 
@@ -64,7 +66,8 @@ The app supports installation as a Progressive Web App (PWA) on both desktop and
 3. Tap **Install app** or **Add to Home screen**.
 4. Confirm and open the app from your home screen.
 
-> Screenshot placeholder: Android install prompt (`docs/images/pwa-android-install.png`)
+<img width="1000" height="702" alt="image" src="https://github.com/user-attachments/assets/bfc03190-9221-414d-a2d5-a2b70cca17cf" />
+
 
 ### iOS (Safari)
 
@@ -73,4 +76,5 @@ The app supports installation as a Progressive Web App (PWA) on both desktop and
 3. Scroll and select **Add to Home Screen**.
 4. Tap **Add** to finish.
 
-> Screenshot placeholder: iOS "Add to Home Screen" flow (`docs/images/pwa-ios-install.png`)
+<img width="1520" height="1334" alt="image" src="https://github.com/user-attachments/assets/053afd9e-9b40-4134-a107-827ea738c732" />
+
