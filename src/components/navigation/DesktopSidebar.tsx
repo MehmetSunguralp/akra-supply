@@ -4,23 +4,11 @@ import type { RootState } from '@/store';
 import { navMenu } from '@/constants/navMenu';
 import { locales } from '@/locales';
 import type { NavMenuItem } from '@/types/navMenu';
+import { NavigationItems } from './NavigationItems';
 
 import Box from '@mui/material/Box';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-
-const isNavItemSelected = (pathname: string, item: NavMenuItem) => {
-  if (!item.url) return false;
-  if (item.id === 'manufacturers') {
-    return pathname === '/manufacturers' || pathname.startsWith('/manufacturers/');
-  }
-  return pathname === item.url;
-};
 
 export const DesktopSidebar = () => {
   const currentLocale = useSelector((state: RootState) => state.locale.currentLocale);
@@ -69,48 +57,20 @@ export const DesktopSidebar = () => {
       </Box>
 
       <Box sx={{ px: 1, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-        <List>
-          {mainMenu.map((menuItem) => {
-            const Icon = menuItem.icon;
-
-            return (
-              <ListItem key={menuItem.id} disablePadding>
-                <ListItemButton
-                  onClick={() => goTo(menuItem)}
-                  disabled={!menuItem.enabled}
-                  selected={isNavItemSelected(pathname, menuItem)}
-                >
-                  <ListItemIcon>
-                    <Icon fontSize='medium' />
-                  </ListItemIcon>
-
-                  <ListItemText primary={menuStrings[menuItem.id]} />
-                </ListItemButton>
-              </ListItem>
-            );
-          })}
-        </List>
+        <NavigationItems items={mainMenu} pathname={pathname} labels={menuStrings} variant='desktop' onNavigate={goTo} />
 
         <Box sx={{ mt: 'auto' }}>
           <Divider />
 
-          <List>
-            {settingsItem && (
-              <ListItem disablePadding>
-                <ListItemButton
-                  disabled={!settingsItem.enabled}
-                  selected={isNavItemSelected(pathname, settingsItem)}
-                  onClick={() => goTo(settingsItem)}
-                >
-                  <ListItemIcon>
-                    <settingsItem.icon fontSize='small' />
-                  </ListItemIcon>
-
-                  <ListItemText primary={menuStrings[settingsItem.id]} />
-                </ListItemButton>
-              </ListItem>
-            )}
-          </List>
+          {settingsItem ? (
+            <NavigationItems
+              items={[settingsItem]}
+              pathname={pathname}
+              labels={menuStrings}
+              variant='desktop'
+              onNavigate={goTo}
+            />
+          ) : null}
         </Box>
       </Box>
     </Box>

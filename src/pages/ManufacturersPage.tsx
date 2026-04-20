@@ -1,7 +1,7 @@
 import { getAllCompanies } from '@/api/apiCalls';
-import CompanyCard from '@/components/CompanyCard';
-import CompanyCardSkeleton from '@/components/CompanyCardSkeleton';
-import { ManufacturersFilterBar } from '@/components/ManufacturersFilterBar';
+import CompanyCard from '@/components/company-card/CompanyCard';
+import CompanyCardSkeleton from '@/components/company-card/CompanyCardSkeleton';
+import { ManufacturersFilterBar } from '@/components/manufacturers-filters/ManufacturersFilterBar';
 import { locales } from '@/locales';
 import type { RootState } from '@/store';
 import type { Company, CompanyFilters } from '@/types/company';
@@ -31,8 +31,7 @@ const ManufacturersGrid = memo(function ManufacturersGrid({
       }}
     >
       {!loading && companies.map((card) => <CompanyCard key={card.id} cardData={card} />)}
-      {loading &&
-        [...new Array(12)].map((_, index) => <CompanyCardSkeleton key={`sk-${index}`} />)}
+      {loading && [...new Array(12)].map((_, index) => <CompanyCardSkeleton key={`sk-${index}`} />)}
     </Box>
   );
 });
